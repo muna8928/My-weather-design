@@ -38,15 +38,17 @@ main {
   display: flex;
 }
 .weather-app-value {
-  font-size: 70px;
+  font-size: 80px;
   font-weight: bold;
-  margin-left: 10px;
+
+  line-height: 80px;
 }
 .weather-app-icon {
-  margin-top: 30px;
+  height: 80px;
+  width: 80px;
 }
 .weather-app-unit {
-  margin-top: 16px;
+  margin-top: 6px;
   font-size: 28px;
 }
 .weather-app-city {

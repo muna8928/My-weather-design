@@ -54,26 +54,21 @@ function handleSearchSubmit(event) {
 
   searhCity(searchInput.value);
 }
-function displayForcast() {
+function displayFunction() {
   let forecast = document.querySelector("#forecast");
 
-  forecast.innerHTML = `
-<div class="weather-forecast-day">
-<div class="weather-forecast-date">Tue</div>
-<div class="weather-forecast-icon">☀</div>
-<div class="weather-forecast-temperatures">
-  <div class="weather-forecast-temperature"><strong>10º</strong></div>
-
-<div class="weather-forecast-temperature">5º</div>
-</div>
-
-
-
-
-</div>`;
+  forecast.innerHTML = `<div class="weather-forecast-day">
+          <div class="weather-forecast-date">Tue</div>
+          <div class="weather-forecast-icon">⛅</div>
+          <div class="weather-forecast-temperatures">
+            <span class="weather-forecast-max"><strong>15º</strong></span>
+            <span class="weather-forecast-min">9º</span>
+          </div>
+        </div>`;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searhCity("Tokyo");
+searhCity("Accra");
+displayFunction();

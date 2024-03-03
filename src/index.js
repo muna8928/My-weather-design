@@ -19,6 +19,8 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   speedElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -54,21 +56,36 @@ function handleSearchSubmit(event) {
 
   searhCity(searchInput.value);
 }
-function displayFunction() {
-  let forecast = document.querySelector("#forecast");
+function getForecast(city) {
+  let apiKey = "333f383e0cbe5983a0300b78e5t4eo0c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 
-  forecast.innerHTML = `<div class="weather-forecast-day">
-          <div class="weather-forecast-date">Tue</div>
+function displayForecast(response) {
+  console.log(response);
+  let days = ["Tues", "Wed", "Thur", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="weather-forecast-day">
+          <div class="weather-forecast-date">${day}</div>
           <div class="weather-forecast-icon">⛅</div>
           <div class="weather-forecast-temperatures">
             <span class="weather-forecast-max"><strong>15º</strong></span>
             <span class="weather-forecast-min">9º</span>
           </div>
         </div>`;
+  });
+
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searhCity("Accra");
-displayFunction();
